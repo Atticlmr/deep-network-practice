@@ -35,3 +35,11 @@ config_1 = {
     {'out_channels': 128, 'kernel_size': 3, 'stride': 1, 'padding': 1}
 ]
 }
+import json
+# 将配置写入JSON文件
+with open('config/treasure.json', 'w') as f:
+    json.dump(config_0, f, ensure_ascii=False, indent=4)
+
+# 将配置写入JSON文件
+with open('config/cifar_10.json', 'w') as f:
+    json.dump(config_0, f, ensure_ascii=False, indent=4)

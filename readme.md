@@ -29,7 +29,7 @@ chmod +x ./<xxx.sh>
 │   ├── README.md        # 项目说明
 │   └── design.md        # 设计文档
 │
-├── utils/               # 测试目录
+├── utils/               # 小工具的封装
 │   ├── test1.c          # 测试用例1
 │   └── test2.c          # 测试用例2
 │
