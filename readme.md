@@ -20,16 +20,16 @@ chmod +x ./<xxx.sh>
 │   └── cifar-10-python        
 │
 ├── config/             # 配置文件目录
-│   └── common.h         # 公共头文件
+│   └── common.h         
 │
 ├── logs/                 # 日志文件和模型文件
-│   └── program          # 可执行文件
+│   └── program          
 │
-├── network/                # 神经网络结构文件
+├── network/             # 神经网络结构文件
 │   ├── README.md        # 项目说明
 │   └── design.md        # 设计文档
 │
-├── tests/               # 测试目录
+├── utils/               # 测试目录
 │   ├── test1.c          # 测试用例1
 │   └── test2.c          # 测试用例2
 │
