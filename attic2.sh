@@ -1,3 +1,3 @@
 python main.py \
     --device cuda \
-    --tasks 1
+    --tasks cat_dog
