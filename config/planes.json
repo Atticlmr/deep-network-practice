@@ -1,0 +1,29 @@
+{
+    "task": "treasure",
+    "data_dir": "dataset/planes/datasets/train",
+    "test_dir": "dataset/planes/datasets/test",
+    "num_classes": 9,
+    "batch_size": 32,
+    "lr": 0.001,
+    "num_epochs": 100,
+    "log_dir": "logs/planes",
+    "save_dir": "/home/li/Desktop/code/CV/logs/model/planes",
+    "image_size": 224,
+    "early_stop_patience":10,
+    "conv_layers_config": [
+        {
+            "out_channels": 64,  
+            "stride": 2  
+        },
+        {
+            "out_channels": 128,
+            "stride": 2  
+        },
+        {  
+            "out_channels": 256,
+            "stride": 2
+        }
+    ],
+    "hidden_size": 512,   
+    "dropout_rate": 0.3   
+}

@@ -1,5 +1,5 @@
 # 配置字典（其他参数）
-config_0 = {
+treasure = {
     'task': 'treasure',
     'data_dir': '/home/li/Desktop/code/CV/dataset/archive_train',
     'test_dir': '/home/li/Desktop/code/CV/dataset/archive_test',
@@ -18,7 +18,7 @@ config_0 = {
                  ]
 }
 
-config_1 = {
+cifar = {
     'task': 'cifat-10',
     'data_dir': '/home/li/Desktop/code/CV/dataset/cifar-10-python',
     'num_classes': 10,
@@ -36,10 +36,13 @@ config_1 = {
 ]
 }
 import json
+def write_conf(conf_name,conf):
 # 将配置写入JSON文件
-with open('config/treasure.json', 'w') as f:
-    json.dump(config_0, f, ensure_ascii=False, indent=4)
+    with open(f'config/{conf_name}.json', 'w') as f:
+        json.dump(conf, f, ensure_ascii=False, indent=4)
+import argparse
+if __name__ == "__main__":
+    args_cli =argparse.ArgumentParser(description="config write")
+    args_cli.add_argument('--task',type=str,default='task',help='task name')
 
-# 将配置写入JSON文件
-with open('config/cifar_10.json', 'w') as f:
-    json.dump(config_0, f, ensure_ascii=False, indent=4)
+    write_conf(args_cli.parse_args().task)

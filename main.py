@@ -1,7 +1,8 @@
 import argparse
 config_dir= "/config"
-from network.CNN import CNNnet
-from train import train_0,train_1,evaluate
+
+
+from train import train_0,train_1
 import json
 import torch
 
@@ -17,20 +18,30 @@ def main():
     args_cli = parse_args()
 
     if torch.cuda.is_available():
-        print('CUDA is available')
+        print('CUDA is available, using CUDA for training')
     else:
         print('CUDA not available')
     with open(f'config/{args_cli.tasks}.json', 'r') as file:
         configure = json.load(file)
     
     if args_cli.tasks == 'treasure':
+        from network.CNN import CNNnet
         model = CNNnet(num_classes=configure['num_classes'],conv_layers_config = configure['conv_layers_config']
                        ).to(args_cli.device)
         train_0(args_cli, model, configure)
+    
     elif args_cli.tasks == "cat_dog":
+        from network.CNN import CNNnet
         model = CNNnet(num_classes=configure['num_classes'],conv_layers_config = configure['conv_layers_config']
                 ).to(args_cli.device)
         train_1(args_cli, model, configure)
+
+    elif args_cli.tasks == "planes":
+        from network.ResNet import CNNnetWithResiduals
+        model = CNNnetWithResiduals(num_classes=configure['num_classes'],conv_layers_config = configure['conv_layers_config']                
+                ).to(args_cli.device)
+        train_0(args_cli, model, configure)
+
 
     
 if __name__ == '__main__':

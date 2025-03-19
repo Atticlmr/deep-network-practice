@@ -1,7 +1,5 @@
-import argparse
 import config.config as config
 import torch
-from network.CNN import CNNnet
 from torch.utils.tensorboard import SummaryWriter
 from torchvision import transforms,datasets
 from torch.utils.data import DataLoader, random_split
