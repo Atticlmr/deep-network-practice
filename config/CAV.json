@@ -1,0 +1,10 @@
+{
+    "task": "CAV", 
+    "batch_size": 32,
+    "lr": 0.001,
+    "num_epochs": 100,
+    "network_module":"MLP",
+    "MLP_layers_config":[128, 64],
+    "write_interval": "auto",
+    "ckp_interval":"auto"
+}

@@ -5,12 +5,11 @@ config_dir= "/config"
 from train import train_0,train_1
 import json
 import torch
-
+from utils import logoutput, params_damp
 def parse_args():
-    args_cli =argparse.ArgumentParser(description="CNN_training")
+    args_cli =argparse.ArgumentParser(description="training")
     args_cli.add_argument('--device',type=str,default='cuda',help='GPU or CPU')
-    args_cli.add_argument('--tasks',type=str,default='treasure',help='treasure:宝石分类 cat_dog:猫狗分类')
-
+    args_cli.add_argument('--task',type=str,default='',help='experiment name')
     return args_cli.parse_args()
 
 
@@ -18,31 +17,22 @@ def main():
     args_cli = parse_args()
 
     if torch.cuda.is_available():
-        print('CUDA is available, using CUDA for training')
+        print('CUDA is available, using GPU for training')
     else:
         print('CUDA not available')
-    with open(f'config/{args_cli.tasks}.json', 'r') as file:
+
+    with open(f'config/CAV.json', 'r') as file:
         configure = json.load(file)
+        if args_cli.task == '':
+             raise ValueError("task name is None!")
+        else:
+            base_log_dir = f"./logs/{args_cli.task}"
+            LOG_DIR = params_damp(configure=configure, base_log_dir=base_log_dir)
+
+            
+
+
     
-    if args_cli.tasks == 'treasure':
-        from network.CNN import CNNnet
-        model = CNNnet(num_classes=configure['num_classes'],conv_layers_config = configure['conv_layers_config']
-                       ).to(args_cli.device)
-        train_0(args_cli, model, configure)
-    
-    elif args_cli.tasks == "cat_dog":
-        from network.CNN import CNNnet
-        model = CNNnet(num_classes=configure['num_classes'],conv_layers_config = configure['conv_layers_config']
-                ).to(args_cli.device)
-        train_1(args_cli, model, configure)
-
-    elif args_cli.tasks == "planes":
-        from network.ResNet import CNNnetWithResiduals
-        model = CNNnetWithResiduals(num_classes=configure['num_classes'],conv_layers_config = configure['conv_layers_config']                
-                ).to(args_cli.device)
-        train_0(args_cli, model, configure)
-
-
     
 if __name__ == '__main__':
     main()
